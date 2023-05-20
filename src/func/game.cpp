@@ -7,193 +7,24 @@
 using namespace std;
 
 
-#include "../src/lib/game.h"
-#include "../src/lib/term.h"
+#include "../src/func/game.h"
+#include "../src/func/term.h"
 
 
-#define FILE 563     
-#define GAME 9        
+#define FILE 563
+#define GAME 9
 
-array<string, GAME> stage = { "
-     ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-	 ||                  \n
-  ===================    \n
-",
-
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                                      \n
-	 ||/  /                                       \n
-	 ||  /                                        \n
-	 || /                                         \n
-	 ||/                                          \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /                                         \n
-	 ||/                                          \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /                  ||      ||             \n
-	 ||/                  ||        ||            \n
-	 ||                    ||      ||             \n
-	 ||                     ||===||               \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /                  ||      |||||          \n
-	 ||/                  ||        || ||         \n
-	 ||                    ||      ||   ||        \n
-	 ||                     ||===||               \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /               |||||      |||||          \n
-	 ||/               || ||        || ||         \n
-	 ||               ||   ||      ||   ||        \n
-	 ||                     ||===||               \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /               |||||      |||||          \n
-	 ||/               || ||        || ||         \n
-	 ||               ||   ||      ||   ||        \n
-	 ||                     ||===||               \n
-	 ||                     ||===                 \n
-	 ||                    ||                     \n
-	 ||                 __==                      \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-",
-									
-                                    "
- ====================================             \n
-   ==||=============================              \n                       
-     ||  /  /                  ||                 \n
-	 || /  /                ========              \n
-	 ||/  /                (|.|  |.|)             \n
-	 ||  /                  ||____||              \n
-	 || /               |||||      |||||          \n
-	 ||/               || ||        || ||         \n
-	 ||               ||   ||      ||   ||        \n
-	 ||                     ||===||               \n
-	 ||                     ||===||               \n
-	 ||                    ||     ||              \n
-	 ||                 __==      ==__            \n
-	 ||                                           \n
-	 ||                                           \n
-	 ||                                           \n
-  ===================                             \n
-"
-                                  };
-
-
+array<string, GAME> stage ={ "",
+                                    "        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n        ||                  \n  ===================    \n",
+                                    "====================================             \n       ==||=============================              \n         ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                                      \n	 ||/  /                                       \n	 ||  /                                        \n	 || /                                         \n	 ||/                                          \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                                         \n	 ||/                                          \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                  ||      ||             \n	 ||/                  ||        ||            \n	 ||                    ||      ||             \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                  ||      |||||          \n	 ||/                  ||        || ||         \n	 ||                    ||      ||   ||        \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    //"_______\n|/    |\n|     O\n|    /|\n|\n|\n|______\n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /               |||||      |||||          \n	 ||/               || ||        || ||         \n	 ||               ||   ||      ||   ||        \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
+                                    //"_______\n|/    |\n|     O\n|    /|\\\n|    /\n|\n|_______\n",
+                                    "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /               |||||      |||||          \n	 ||/               || ||        || ||         \n	 ||               ||   ||      ||   ||        \n	 ||                     ||===||               \n	 ||                     ||===||               \n	 ||                    ||     ||              \n	 ||                 __==      ==__            \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n"                                  };
 Shell::Shell() {
   _quit = false;
   _p1._score = 0;
@@ -250,12 +81,10 @@ void Shell::run() {
     session.addWord(guess, word);
   }
   while (_attempts < GAME - 1) {
- 
     session.display();
     if (!session.Guess()) {
       _attempts++;
       cout << endl << stage.at(_attempts) << endl << endl;
-   
     }
     if (session.end()) {
       cout << "\nCongratulations " << guess._name << "you won!" << endl;
@@ -282,12 +111,10 @@ void Shell::run() {
 
 
 void Shell::option(int choice) {
-
   switch(choice) {
     case 1 :
       cout << "\nSelected PC opponent!" << endl;
       _multiplayer = false;  word._score = 0;
-
       _p2._act = false;
       word._act = false;
       break;
@@ -304,11 +131,6 @@ void Shell::option(int choice) {
 }
 
 
-
-
-
-
-
 void Shell::Switch() {
   if (_p1.guess == true) {
 
@@ -323,7 +145,6 @@ void Shell::Switch() {
   else {
     _p2._score += guess._score;
     _p1._score += word._score;
- 
     _p2.guess = false;
     _p1.guess = true;
     guess = _p2;
@@ -339,65 +160,39 @@ void Shell::Switch() {
 
 
 void Shell::Score() {
-  
   cout << endl << _p1._name << ": " << _p1._score << endl;
   if (_p2._act) {
     cout << endl << _p2._name << ": " << _p2._score << endl;
   }
 }
 
-
-
-
-
-
-
-
 Data::Data() {
   Sol = "";
 }
-
-
-
-
-
-
 
 
 void Data::gen() {
   int ran = rand() % FILE;
   int Num = 0;
   string line;
-  ifstream wordList("../src/lib/words.txt");
+  ifstream wordList("../src/func/words.txt");
   while(getline(wordList, line)) {
     ++Num;
     if (Num == ran) {
       word = line;
- 
     }
   }
   Sol.append(word.size(), '.');
-
 }
 
 
-
-
-
-
-void Data::addWord(Player guess, Player word) {
+void Data::addWord(Player guess, Player wordf) {
   Hidestroks();
-  cout << "\n"  << word._name << "Please provide a word for " << guess._name << " to guess:";
+  cout << "\n"  << wordf._name << "Please provide a word for " << guess._name << " to guess:";
   cin >> word;
   Showstroks();
-
   Sol.append(word.size(), '.');
-
 }
-
-
-
-
 
 
 void Data::display() {
@@ -412,25 +207,15 @@ void Data::display() {
 }
 
 
-
-
-
-
 void Data::Ans() {
   cout << "\nThe correct answer was: \n" << word << endl;
 }
-
-
-
-
-
 
 
 bool Data::Guess() {
   cout << "\n\nPlease guess a letter (Only the first player provided will be read):" << endl;
   cin >> guess;
   bool ans = false;
-
   for (unsigned int i = 0; i < incorrect.size(); i++) {
     if (guess == incorrect.at(i)) {
       cout << "\nYou've already guessed that letter!" << endl;
@@ -452,9 +237,6 @@ bool Data::Guess() {
   }
   return ans;
 }
-
-
-
 
 
 bool Data::end() {

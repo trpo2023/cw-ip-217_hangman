@@ -5,8 +5,8 @@
 using namespace std;
 
 
-#include "../src/lib/game.h"
-#include "../src/lib/term.h"
+#include "../src/func/game.h"
+#include "../src/func/term.h"
 
 
 
@@ -25,9 +25,9 @@ int main() {
     for (;;) {
       game.run();
    
-      cout << "Play again? yes / no";
+      cout << "Play again? 1(yes) / 0(no)";
       cin >> restart;
-      if(restart != 'yes') {
+      if(restart != '1') {
         break;
       }
     }
