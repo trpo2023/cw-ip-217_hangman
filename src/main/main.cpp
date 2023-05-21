@@ -15,6 +15,7 @@ using namespace std;
 ///////////////////////////////////////
 int main() {
   char restart;
+  setlocale(LC_ALL, "Russian");
   srand (time(NULL));
   Shell game;
   for (;;) {
@@ -24,8 +25,7 @@ int main() {
     }
     for (;;) {
       game.run();
-   
-      cout << "Play again? 1(yes) / 0(no)";
+      cout << "Играть снова? 1(yes) / 0(no)";
       cin >> restart;
       if(restart != '1') {
         break;

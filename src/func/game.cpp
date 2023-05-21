@@ -21,17 +21,15 @@ array<string, GAME> stage ={ "",
                                     "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                                         \n	 ||/                                          \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
                                     "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                  ||      ||             \n	 ||/                  ||        ||            \n	 ||                    ||      ||             \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
                                     "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /                  ||      |||||          \n	 ||/                  ||        || ||         \n	 ||                    ||      ||   ||        \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
-                                    //"_______\n|/    |\n|     O\n|    /|\n|\n|\n|______\n",
                                     "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /               |||||      |||||          \n	 ||/               || ||        || ||         \n	 ||               ||   ||      ||   ||        \n	 ||                     ||===||               \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n",
-                                    //"_______\n|/    |\n|     O\n|    /|\\\n|    /\n|\n|_______\n",
                                     "====================================             \n       ==||=============================              \n         ||  /  /                  ||                 \n	 || /  /                ========              \n	 ||/  /                (|.|  |.|)             \n	 ||  /                  ||____||              \n	 || /               |||||      |||||          \n	 ||/               || ||        || ||         \n	 ||               ||   ||      ||   ||        \n	 ||                     ||===||               \n	 ||                     ||===||               \n	 ||                    ||     ||              \n	 ||                 __==      ==__            \n	 ||                                           \n	 ||                                           \n	 ||                                           \n  ===================                             \n"                                  };
 Shell::Shell() {
   _quit = false;
   _p1._score = 0;
-  _p1._name = "Player 1";
+  _p1._name = "Игрок 1";
   _p1.guess = true;
   _p2._score = 0;
-  _p2._name = "Player 2";
+  _p2._name = "Игрок 2";
   guess = _p1;
   word = _p2;
 }
@@ -46,19 +44,19 @@ void Shell::init() {
   int options = 3;
   int choose;
 
-  cout <<   "\n==Hangman==\n\nSelect an option:" <<
-            "\n1.Single Player" <<
-            "\n2.Multiplayer" <<
-            "\n3.Exit" << endl;
+  cout <<   "\n ________________________________\n|____________Виселица____________|\n|______Выберите режим игры:______|" <<
+            "\n|      1. Один игрок(VsPC)       |" <<
+            "\n|      2. Два игрока             |" <<
+            "\n|      3. Выход                  |" <<
+            "\n|________________________________|" << endl;
   cin >> choose;
   option(choose);
 
   if (choose < 1 || choose > options) {
-    cout << "\nPlease select a valid input option!" << endl;
+    cout << "\nНеправильный ввод" << endl;
     init();
   }
   else if (choose == options) {
-    cout << "Exiting..." << endl;
     _quit = true;
     return;
   }
@@ -87,13 +85,13 @@ void Shell::run() {
       cout << endl << stage.at(_attempts) << endl << endl;
     }
     if (session.end()) {
-      cout << "\nCongratulations " << guess._name << "you won!" << endl;
+      cout << "\n!!!!!!!!!! " << guess._name << " Победа!" << endl;
       guess._score ++;
       break;
     }
   }
   if (!session.end()) {
-    cout << "\nGAME OVER " << guess._name << "you lose!" << endl;
+    cout << "\nИгра закончена. " << guess._name << " Поражение." << endl;
     word._score ++;
   }
   session.Ans();
@@ -113,20 +111,20 @@ void Shell::run() {
 void Shell::option(int choice) {
   switch(choice) {
     case 1 :
-      cout << "\nSelected PC opponent!" << endl;
+      cout << "\nВыбран соперник-компьютер." << endl;
       _multiplayer = false;  word._score = 0;
       _p2._act = false;
       word._act = false;
       break;
     case 2 :
-      cout << "\nSelected player opponent!" << endl;
+      cout << "\nВыбрана игра на двух игроков!" << endl;
       _multiplayer = true;
       _p2._act = true;
       break;
     case 3:
       break;
     default :
-      throw "\nUnrecognised input... Congrats, you broke it.\n";
+      throw "\nНераспознанный ввод... \nОшибка...\n";
   }
 }
 
@@ -182,13 +180,13 @@ void Data::gen() {
       word = line;
     }
   }
-  Sol.append(word.size(), '.');
+  Sol.append(word.size(), '#');
 }
 
 
 void Data::addWord(Player guess, Player wordf) {
   Hidestroks();
-  cout << "\n"  << wordf._name << "Please provide a word for " << guess._name << " to guess:";
+  cout << "\n"  << wordf._name << "Введите слово для" << guess._name << " Угадайте:";
   cin >> word;
   Showstroks();
   Sol.append(word.size(), '.');
@@ -198,7 +196,7 @@ void Data::addWord(Player guess, Player wordf) {
 void Data::display() {
   cout << endl;
   cout << Sol << endl;
-  cout << "\nIncorrect guesses: " << incorrect.size() << endl;
+  cout << "\nОшибки: " << incorrect.size() << endl;
   for (unsigned int i = 0; i < incorrect.size(); i++) {
       cout << incorrect.at(i) <<", ";
   }
@@ -208,23 +206,23 @@ void Data::display() {
 
 
 void Data::Ans() {
-  cout << "\nThe correct answer was: \n" << word << endl;
+  cout << "\nВаше слово: \n" << word << endl;
 }
 
 
 bool Data::Guess() {
-  cout << "\n\nPlease guess a letter (Only the first player provided will be read):" << endl;
+  cout << "\n\nУгадайте букву:" << endl;
   cin >> guess;
   bool ans = false;
   for (unsigned int i = 0; i < incorrect.size(); i++) {
     if (guess == incorrect.at(i)) {
-      cout << "\nYou've already guessed that letter!" << endl;
+      cout << "\nЭта буква уже использована." << endl;
       ans = true;
     }
   }
   for (unsigned int i = 0; i < Sol.size(); i++) {
     if (guess == Sol.at(i)) {
-      cout << "\nYou've already guessed that letter!" << endl;
+      cout << "\nЭта буква уже угадана." << endl;
       ans = true;
     }
     else if (guess == word.at(i)) {
