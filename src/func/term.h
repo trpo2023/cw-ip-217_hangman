@@ -1,0 +1,2 @@
+void Hidestroks();
+void Showstroks();
