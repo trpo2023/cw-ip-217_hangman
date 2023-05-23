@@ -24,14 +24,14 @@ CTEST (game_shell_constructor_test, initialize_game_2)
 CTEST (game_shell_option_test, option_selected_1)
 {
     Shell game;
-    game.option(1);
+    game.option('1');
     ASSERT_FALSE(game._multiplayer);
 }
 
 CTEST (game_shell_option_test, option_selected_2)
 {
     Shell game;
-    game.option(2);
+    game.option('2');
     ASSERT_TRUE(game._multiplayer);
     ASSERT_TRUE(game._p2._act);
 }
@@ -39,7 +39,7 @@ CTEST (game_shell_option_test, option_selected_2)
 CTEST (game_shell_option_test, option_selected_3)
 {
     Shell game;
-    game.option(3);
+    game.option('3');
     ASSERT_FALSE(game._p2._act);
 }
 
