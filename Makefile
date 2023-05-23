@@ -12,7 +12,7 @@ THIRDPARTY = thirdparty/
 
 .PHONY: hangman
 
-$(HANGMAN_BIN)main: $(HANGMAN_OBJ)main.o $(HANGMANFUNC_OBJ)game.o $(HANGMANFUNC_OBJ)term.o
+$(HANGMAN_BIN)main.out: $(HANGMAN_OBJ)main.o $(HANGMANFUNC_OBJ)game.o $(HANGMANFUNC_OBJ)term.o
 	$(CXX) $(CFLAGS) $^ -o $@
 $(HANGMAN_OBJ)main.o: $(HANGMAN_SRC)main.cpp
 	$(CXX) -c -Wall -std=c++11 $(CFLAGS) $< -o $@

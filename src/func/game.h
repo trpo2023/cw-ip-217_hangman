@@ -28,7 +28,7 @@ class Shell {
     Shell();
     void init();
     void run();
-    void option(int choice);
+    void option(char choice);
     void Switch();
     void Score();
     bool _quit;

@@ -41,25 +41,26 @@ Shell::Shell() {
 
 
 void Shell::init() {
-  int options = 3;
-  int choose;
+  char options = '3';
+  char choose = '5';
 
   cout <<   "\n ________________________________\n|____________Виселица____________|\n|______Выберите режим игры:______|" <<
             "\n|      1. Один игрок(VsPC)       |" <<
             "\n|      2. Два игрока             |" <<
             "\n|      3. Выход                  |" <<
             "\n|________________________________|" << endl;
-  cin >> choose;
-  option(choose);
 
-  if (choose < 1 || choose > options) {
-    cout << "\nНеправильный ввод" << endl;
-    init();
+  for(;choose < '1' || choose > '3';) {
+    cin >> choose;
+    if (choose < '1' || choose > '3') {
+      cout << "\nНеправильный ввод. Выберите цифру(1-3)..." << endl;
+    }
+    else if (choose == options) {
+      _quit = true;
+      return;
+    }
   }
-  else if (choose == options) {
-    _quit = true;
-    return;
-  }
+  option(choose);
 }
 
 
@@ -108,20 +109,20 @@ void Shell::run() {
 
 
 
-void Shell::option(int choice) {
+void Shell::option(char choice) {
   switch(choice) {
-    case 1 :
+    case '1' :
       cout << "\nВыбран соперник-компьютер." << endl;
       _multiplayer = false;  word._score = 0;
       _p2._act = false;
       word._act = false;
       break;
-    case 2 :
+    case '2' :
       cout << "\nВыбрана игра на двух игроков!" << endl;
       _multiplayer = true;
       _p2._act = true;
       break;
-    case 3:
+    case '3':
       break;
     default :
       throw "\nНераспознанный ввод... \nОшибка...\n";
