@@ -14,4 +14,4 @@ jobs:
           exclude: game.cpp
 
       - name: Check codestyle    
-        run: git ls-files *.{cpp,h} | xargs clang-format -i --verbose && git diff --exit-code
+        run: git ls-files *.{cpp,h} | xargs clang-format -i --verbose && git diff --exit-code --no-index a b
